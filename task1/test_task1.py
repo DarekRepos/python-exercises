@@ -1,21 +1,64 @@
 from task_word_rank import display_counted_words, find_total_n_words
 import inspect
 
+"""
+UNIT TESTS
+"""
 
-def test_count_for_first_1_words():
+
+def test_find_total_n_words():
+    """
+    GIVEN
+    sentence with multiple reapeted words
+    """
     sentence = [
         'mam',
-        'mam mam',
-        'mam'
+        'mam ala kota i jeszcze jednego kota',
+        'mam ala'
     ]
 
-    total_words = find_total_n_words(sentence, 1)
+    """
+    WHEN
+    use function that calculate total number of word
+    """
+    result = find_total_n_words(sentence, 3)
+
+    """
+    THEN
+    Returned tuples with correct number for each word that are repeated
+    """
+    expected_result = [('mam', 3), ('ala', 2), ('kota', 2)]
+    assert result == expected_result
+
+
+def test_count_for_first_1_words():
+    """
+    GIVEN
+    array of sentences
+    """
+    total_words = [
+        ('mam', 4)
+    ]
+
+    """
+    WHEN
+    use function to display total words
+    """
     result = display_counted_words(total_words)
+
+    """
+    THEN
+    user can see corrent number for one word
+    """
     assert result == "'mam' = 4"
 
 
-def test_count_top_first_3_words():
+"""
+FUNCTIONAL tests
+"""
 
+
+def test_count_top_first_3_words():
     """
     GIVEN
     ***input:*** array with multiple strings\
